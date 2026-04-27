@@ -31,7 +31,7 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        
+
         $newProject = new Project();
         $newProject->name = $data['name'];
         $newProject->client = $data['client'];
@@ -41,7 +41,8 @@ class ProjectController extends Controller
         $newProject->completed = $data['completed'];
         $newProject->save();
 
-        return redirect()->route('projects.show', $newProject->id);;
+        return redirect()->route('projects.show', $newProject->id);
+        ;
     }
 
     /**
@@ -56,17 +57,28 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Project $project)
     {
-        //
+        return view('projects.edit', compact('project'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Project $project)
     {
-        //
+        $data = $request->all();
+
+        $project->name = $data['name'];
+        $project->client = $data['client'];
+        $project->start_year = $data['start_year'];
+        $project->end_year = $data['end_year'];
+        $project->description = $data['description'];
+        $project->completed = $request->boolean('completed');
+
+        $project->save();
+
+        return redirect()->route('projects.show', $project);
     }
 
     /**
