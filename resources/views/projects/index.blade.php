@@ -24,9 +24,22 @@
                 @endif
               </p>
               <p class="mt-3 text-secondary">{{ $project->description }}</p>
-              <a href="{{ route('projects.show', $project->id) }}" class="btn btn-outline-primary mt-4 px-4">
-              Details
-              </a>
+              <div class="d-flex gap-2 mt-4">
+                <a href="{{ route('projects.show', $project->id) }}" class="btn btn-outline-primary px-4">
+                  Details
+                </a>
+                <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-outline-warning px-4">
+                  Edit
+                </a>
+                <form action="{{ route('projects.destroy', $project->id) }}" method="POST" class="d-inline-block m-0 p-0">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="btn btn-outline-danger px-4">
+                    Delete
+                  </button>
+                </form>
+              </div>
+
             </div>
           </div>
         </div>
