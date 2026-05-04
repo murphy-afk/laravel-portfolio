@@ -36,15 +36,16 @@ class ProjectController extends Controller
         $newProject = new Project();
         $newProject->name = $data['name'];
         $newProject->client = $data['client'];
+        $newProject->type_id = $data['type_id'];
         $newProject->start_year = $data['start_year'];
         $newProject->end_year = $data['end_year'];
         $newProject->description = $data['description'];
-        $newProject->completed = $data['completed'];
+        $newProject->completed = $request->boolean('completed'); // safer boolean handling
         $newProject->save();
 
         return redirect()->route('projects.show', $newProject->id);
-        ;
     }
+
 
     /**
      * Display the specified resource.
@@ -61,7 +62,10 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('projects.edit', compact('project'));
+        return view('projects.edit', [
+            'project' => $project,
+            'types' => Type::all()
+        ]);
     }
 
     /**
@@ -73,6 +77,7 @@ class ProjectController extends Controller
 
         $project->name = $data['name'];
         $project->client = $data['client'];
+        $project->type_id = $data['type_id'];
         $project->start_year = $data['start_year'];
         $project->end_year = $data['end_year'];
         $project->description = $data['description'];
