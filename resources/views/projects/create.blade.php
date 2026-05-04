@@ -16,24 +16,34 @@
         <input type="text" name="client" id="client" class="form-control" placeholder="Optional">
       </div>
       <div class="mb-3">
-        <label for="description" class="form-label fw-bold">Description</label>
-        <textarea name="description" id="description" rows="4" class="form-control" required></textarea>
-      </div>
-      <div class="mb-3">
-        <label for="start_year" class="form-label fw-bold">Start Year</label>
-        <input type="number" name="start_year" id="start_year" class="form-control" min="1900" max="2100" required>
-      </div>
-      <div class="mb-3">
-        <label for="end_year" class="form-label fw-bold">End Year</label>
-        <input type="number" name="end_year" id="end_year" class="form-control" min="1900" max="2100">
-      </div>
-      <div class="form-check mb-4">
-        <input type="hidden" name="completed" value="0">
-        <input type="checkbox" name="completed" id="completed" class="form-check-input" value="0">
-        <label for="completed" class="form-check-label fw-bold">Completed</label>
-      </div>
-      <button type="submit" class="btn btn-primary px-4">Save</button>
-    </form>
+        <label for="type_id" class="form-label fw-bold">Type</label>
+        <select name="type_id" id="type_id" class="form-select" required>
+          <option value="">Select a type</option>
+          @foreach ($types as $type)
+            <option value="{{ $type->id }}">{{ ucfirst($type->name) }}</option>
+          @endforeach
+        </select>
+      
+  </div>
+  <div class="mb-3">
+    <label for="description" class="form-label fw-bold">Description</label>
+    <textarea name="description" id="description" rows="4" class="form-control" required></textarea>
+  </div>
+  <div class="mb-3">
+    <label for="start_year" class="form-label fw-bold">Start Year</label>
+    <input type="number" name="start_year" id="start_year" class="form-control" min="1900" max="2100" required>
+  </div>
+  <div class="mb-3">
+    <label for="end_year" class="form-label fw-bold">End Year</label>
+    <input type="number" name="end_year" id="end_year" class="form-control" min="1900" max="2100">
+  </div>
+  <div class="form-check mb-4">
+    <input type="hidden" name="completed" value="0">
+    <input type="checkbox" name="completed" id="completed" class="form-check-input" value="0">
+    <label for="completed" class="form-check-label fw-bold">Completed</label>
+  </div>
+  <button type="submit" class="btn btn-primary px-4">Save</button>
+  </form>
   </div>
 
 @endsection

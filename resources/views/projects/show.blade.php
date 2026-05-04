@@ -11,6 +11,7 @@
                     <div class="card-body">
                         <h1 class="fw-bold mb-2">{{ $project->name }}</h1>
                         <p class="text-muted fs-5">{{ $project->client ?? 'Personal Project' }}</p>
+                        <p class="text-muted fs-5">{{ $project->type->name }}</p>
                         <hr class="my-4">
                         <div class="fs-6">
                             <p>Start year: {{ $project->start_year }}</p>

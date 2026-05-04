@@ -20,6 +20,7 @@ class ProjectsTableSeeder extends Seeder
             $endYear = $startYear + rand(1, 4);
 
             $newProject = new Project();
+            $newProject->type_id = rand(1, 3);
             $newProject->name = $faker->sentence(4);
             $newProject->client = $faker->company();
             $newProject->start_year = $startYear;

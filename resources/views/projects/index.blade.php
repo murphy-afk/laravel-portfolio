@@ -19,6 +19,7 @@
               <h6 class="card-subtitle mb-2 text-muted">
                 {{ $project->client ?? 'Personal project' }}
               </h6>
+              <p class="mb-1">Type: {{ $project->type->name }}</p>
               <p class="mt-3 mb-1">Start: {{ $project->start_year }}</p>
               <p class="mb-1">End: {{ $project->end_year ?? '—' }}</p>
               <p class="mb-1">Status:
@@ -31,7 +32,7 @@
               <p class="mt-3 text-secondary">{{ $project->description }}</p>
               <div class="d-flex gap-2 mt-4">
                 <a href="{{ route('projects.show', $project->id) }}" class="btn btn-outline-primary px-4">
-                  Back to all projects
+                  Details
                 </a>
                 <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-outline-warning px-4">
                   Edit
