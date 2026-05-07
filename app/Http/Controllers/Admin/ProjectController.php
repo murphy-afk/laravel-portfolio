@@ -66,7 +66,8 @@ class ProjectController extends Controller
     {
         return view('projects.edit', [
             'project' => $project,
-            'types' => Type::all()
+            'types' => Type::all(),
+            'technologies' => Technology::all()
         ]);
     }
 
@@ -84,8 +85,10 @@ class ProjectController extends Controller
         $project->end_year = $data['end_year'];
         $project->description = $data['description'];
         $project->completed = $request->boolean('completed');
+        
+        $project->update();
 
-        $project->save();
+        $project->technologies()->sync($data['technologies']);
 
         return redirect()->route('projects.show', $project);
     }

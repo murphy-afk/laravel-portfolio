@@ -46,6 +46,20 @@
         <input type="number" name="end_year" id="end_year" class="form-control" min="1900" max="2100"
           value="{{ $project->end_year }}">
       </div>
+      <div class="mb-3">
+        <label class="form-label fw-bold">Technologies</label>
+        <div class="d-flex flex-wrap gap-3">
+          @foreach ($technologies as $technology)
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" name="technologies[]" id="tech-{{ $technology->id }}"
+                value="{{ $technology->id }}" {{$project->technologies->contains($technology->id) ? 'checked' : ''}}>
+              <label class="form-check-label" for="tech-{{ $technology->id }}">
+                {{ $technology->name }}
+              </label>
+            </div>
+          @endforeach
+        </div>
+      </div>
       <div class="form-check mb-4">
         <input type="hidden" name="completed" value="0">
         <input type="checkbox" name="completed" id="completed" class="form-check-input" value="1" {{ $project->completed ? 'checked' : '' }}>
