@@ -41,9 +41,10 @@ class ProjectController extends Controller
         $newProject->start_year = $data['start_year'];
         $newProject->end_year = $data['end_year'];
         $newProject->description = $data['description'];
-        $newProject->completed = $request->boolean('completed'); // safer boolean handling
+        $newProject->completed = $request->boolean('completed');
         $newProject->save();
-
+        $newProject->technologies()->attach($data['technologies']);
+        
         return redirect()->route('projects.show', $newProject->id);
     }
 
