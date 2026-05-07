@@ -23,27 +23,41 @@
             <option value="{{ $type->id }}">{{ ucfirst($type->name) }}</option>
           @endforeach
         </select>
-      
-  </div>
-  <div class="mb-3">
-    <label for="description" class="form-label fw-bold">Description</label>
-    <textarea name="description" id="description" rows="4" class="form-control" required></textarea>
-  </div>
-  <div class="mb-3">
-    <label for="start_year" class="form-label fw-bold">Start Year</label>
-    <input type="number" name="start_year" id="start_year" class="form-control" min="1900" max="2100" required>
-  </div>
-  <div class="mb-3">
-    <label for="end_year" class="form-label fw-bold">End Year</label>
-    <input type="number" name="end_year" id="end_year" class="form-control" min="1900" max="2100">
-  </div>
-  <div class="form-check mb-4">
-    <input type="hidden" name="completed" value="0">
-    <input type="checkbox" name="completed" id="completed" class="form-check-input" value="0">
-    <label for="completed" class="form-check-label fw-bold">Completed</label>
-  </div>
-  <button type="submit" class="btn btn-primary px-4">Save</button>
-  </form>
+
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label fw-bold">Description</label>
+        <textarea name="description" id="description" rows="4" class="form-control" required></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="start_year" class="form-label fw-bold">Start Year</label>
+        <input type="number" name="start_year" id="start_year" class="form-control" min="1900" max="2100" required>
+      </div>
+      <div class="mb-3">
+        <label for="end_year" class="form-label fw-bold">End Year</label>
+        <input type="number" name="end_year" id="end_year" class="form-control" min="1900" max="2100">
+      </div>
+      <div class="mb-3">
+        <label class="form-label fw-bold">Technologies</label>
+        <div class="d-flex flex-wrap gap-3">
+          @foreach ($technologies as $technology)
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" name="technologies[]" id="tech-{{ $technology->id }}"
+                value="{{ $technology->id }}">
+              <label class="form-check-label" for="tech-{{ $technology->id }}">
+                {{ $technology->name }}
+              </label>
+            </div>
+          @endforeach
+        </div>
+      </div>
+      <div class="form-check mb-4">
+        <input type="hidden" name="completed" value="0">
+        <input type="checkbox" name="completed" id="completed" class="form-check-input" value="0">
+        <label for="completed" class="form-check-label fw-bold">Completed</label>
+      </div>
+      <button type="submit" class="btn btn-primary px-4">Save</button>
+    </form>
   </div>
 
 @endsection
