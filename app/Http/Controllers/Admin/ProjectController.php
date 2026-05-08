@@ -43,7 +43,9 @@ class ProjectController extends Controller
         $newProject->description = $data['description'];
         $newProject->completed = $request->boolean('completed');
         $newProject->save();
-        $newProject->technologies()->attach($data['technologies']);
+        if($request->has('technologies')) {
+            $newProject->technologies()->attach($data['technologies']);
+        }
         
         return redirect()->route('projects.show', $newProject->id);
     }
@@ -87,8 +89,12 @@ class ProjectController extends Controller
         $project->completed = $request->boolean('completed');
         
         $project->update();
-
-        $project->technologies()->sync($data['technologies']);
+        if($request->has('technologies')){
+            $project->technologies()->sync($data['technologies']);
+        }
+        else {
+            $project->technologies()->detach();
+        }
 
         return redirect()->route('projects.show', $project);
     }
